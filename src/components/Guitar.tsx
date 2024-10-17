@@ -9,6 +9,8 @@ type GuitarProps = {
 
 export default function Guitar({ guitar, dispatch }: GuitarProps) {
 
+    //payload: que le debes pasar
+    
     const { name, image, description, price } = guitar
 
     return (

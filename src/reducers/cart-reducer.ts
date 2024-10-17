@@ -33,17 +33,25 @@ export const cartReducer = (
 
     if (action.type === 'add-to-cart') {
 
+        // Se cambió cart. por state.cart para el acceso
+        // action.payload.item.id .- Lo obtiene de la acción de payload
+        // Se cambió findIndex a Find 
         const itemExists = state.cart.find(guitar => guitar.id === action.payload.item.id)
+        
+        // Inicia sin nada
         let updatedCart: CarItem[] = []
 
         if (itemExists) {
             updatedCart = state.cart.map(item => {
                 if (item.id === action.payload.item.id) {
+                   
                     if (item.quantity < MAX_ITEMS) {
                         return { ...item, quantity: item.quantity + 1 }
+                   
                     } else {
                         return item
                     }
+
                 } else {
                     return item
                 }
@@ -62,6 +70,7 @@ export const cartReducer = (
 
     if (action.type === 'remove-from-cart') {
         const cart = state.cart.filter(item => item.id !== action.payload.id)
+        
         return {
             ...state,
             cart
